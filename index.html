@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>择吉</title>
+    <style>
+        /* 引入本地字体 */
+        @font-face {
+            font-family: 'zhuque_fangsong';
+            src: url("font/ZhuqueFangsong-Regular.ttf");
+        }
+        @font-face {
+            font-family: 'ali_puhui';
+            src: url("font/AlibabaPuHuiTi-3-55-Regular.otf");
+        }
+
+        body {
+            background: #fefcf0;  /* 象牙白 #fffbf0 微调 */
+            /* 文字 */
+            font-family: 'zhuque_fangsong', serif;
+            font-size: max(2vw, 2rem);
+            color: #161823;     /* 漆黑 */
+        }
+        h1 { margin-left: 5vw; }
+
+        /* 环形布局 */
+        .situation {
+            margin: auto;
+            width: 88vw;
+            height: 88vw;
+            font-size: max(2vw, 3rem);
+
+            background: #86b7fe;
+            border-radius: 2%;
+            /* 内部元素布局 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ul_circle {
+            padding: 0;
+            list-style: none;
+            position: absolute;
+            /* 文字居中 */
+            display: grid;
+            place-items: center;
+            width: 10vw;
+            height: 10vw;
+            border-radius: 50%;
+            border: #161823 1px solid;
+            background: #fefcf0;  /* 象牙白 #fffbf0 微调 */
+        }
+
+        .ul_circle li {
+            /* 旋转相关属性 */
+            position: absolute;
+            transform-origin: center;
+        }
+        /* 角度 angle 半径 radius */
+        /* rotate(30deg) 旋转 translate(14vw) 平移 rotate(-30deg) 校正内容方向 */
+        .a0_r9 { transform: rotate(0deg)translate(9rem)rotate(-0deg); }
+        .a30_r9 { transform: rotate(30deg)translate(9rem)rotate(-30deg); }
+        .a60_r9 { transform: rotate(60deg)translate(9rem)rotate(-60deg); }
+        .a90_r9 { transform: rotate(90deg)translate(9rem)rotate(-90deg); }
+        .a120_r9 { transform: rotate(120deg)translate(9rem)rotate(-120deg); }
+        .a150_r9 { transform: rotate(150deg)translate(9rem)rotate(-150deg); }
+        .a180_r9 { transform: rotate(180deg)translate(9rem)rotate(-180deg); }
+        .a210_r9 { transform: rotate(210deg)translate(9rem)rotate(-210deg); }
+        .a240_r9 { transform: rotate(240deg)translate(9rem)rotate(-240deg); }
+        .a270_r9 { transform: rotate(270deg)translate(9rem)rotate(-270deg); }
+        .a300_r9 { transform: rotate(300deg)translate(9rem)rotate(-300deg); }
+        .a330_r9 { transform: rotate(330deg)translate(9rem)rotate(-330deg); }
+    </style>
+</head>
+
+<body>
+<h1>择吉</h1>
+<div class="situation">
+    <ul class="ul_circle" id="branch12">支
+        <li class="a0_r9">酉</li>
+        <li class="a30_r9">戌</li>
+        <li class="a60_r9">亥</li>
+        <li class="a90_r9">子</li>
+        <li class="a120_r9">丑</li>
+        <li class="a150_r9">寅</li>
+        <li class="a180_r9">卯</li>
+        <li class="a210_r9">辰</li>
+        <li class="a240_r9">巳</li>
+        <li class="a270_r9">午</li>
+        <li class="a300_r9">未</li>
+        <li class="a330_r9">申</li>
+    </ul>
+</div>
+
+
+</body>
+
+</html>
