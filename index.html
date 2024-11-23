@@ -42,8 +42,7 @@
 	        <li class="a330_r">申</li>
 	    </ul>
 	</div>
-	<p>
-		三门四户合一处，可为取用
+	<p>三门四户合一处，可为 用
 		<br>天三门： 太冲、小吉、从魁
 		<br>地四户： 除、危、定、开
 	</p>
@@ -59,7 +58,7 @@
 			list_item.textContent = item;   // 设置列表项的文本内容
 			list_ul.appendChild(list_item); // 将列表项添加到列表中
 		});
-	};
+	}
 	// 列表元素li 环绕布局
 	let fn_circle = (id_ul, radius_vw) => {
 		let ul = document.querySelector("#" + id_ul);
@@ -76,8 +75,8 @@
 			li.style.transform = `rotate(${r}deg)translate(${radius}vw)rotate(-${r}deg)`;
 			i = i + 1;
 		});
-	};
-	//
+	}
+	// 标记关键信息
 	let fn_mark_css = (id_ul, arr_i) => {
 		let ul = document.querySelector("#" + id_ul);
 		let arr_li = ul.querySelectorAll('li');
