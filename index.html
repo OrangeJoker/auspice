@@ -1,98 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>择吉</title>
-    <style>
-        /* 引入本地字体 */
-        @font-face {
-            font-family: 'zhuque_fangsong';
-            src: url("font/ZhuqueFangsong-Regular.ttf");
-        }
-        @font-face {
-            font-family: 'ali_puhui';
-            src: url("font/AlibabaPuHuiTi-3-55-Regular.otf");
-        }
-
-        body {
-            background: #fefcf0;  /* 象牙白 #fffbf0 微调 */
-            /* 文字 */
-            font-family: 'zhuque_fangsong', serif;
-            font-size: max(2vw, 2rem);
-            color: #161823;     /* 漆黑 */
-        }
-        h1 { margin-left: 5vw; }
-
-        /* 环形布局 */
-        .situation {
-            margin: auto;
-            width: 88vw;
-            height: 88vw;
-            font-size: max(2vw, 3rem);
-
-            background: #86b7fe;
-            border-radius: 2%;
-            /* 内部元素布局 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .ul_circle {
-            padding: 0;
-            list-style: none;
-            position: absolute;
-            /* 文字居中 */
-            display: grid;
-            place-items: center;
-            width: 10vw;
-            height: 10vw;
-            border-radius: 50%;
-            border: #161823 1px solid;
-            background: #fefcf0;  /* 象牙白 #fffbf0 微调 */
-        }
-
-        .ul_circle li {
-            /* 旋转相关属性 */
-            position: absolute;
-            transform-origin: center;
-        }
-        /* 角度 angle 半径 radius */
-        /* rotate(30deg) 旋转 translate(14vw) 平移 rotate(-30deg) 校正内容方向 */
-        .a0_r9 { transform: rotate(0deg)translate(9rem)rotate(-0deg); }
-        .a30_r9 { transform: rotate(30deg)translate(9rem)rotate(-30deg); }
-        .a60_r9 { transform: rotate(60deg)translate(9rem)rotate(-60deg); }
-        .a90_r9 { transform: rotate(90deg)translate(9rem)rotate(-90deg); }
-        .a120_r9 { transform: rotate(120deg)translate(9rem)rotate(-120deg); }
-        .a150_r9 { transform: rotate(150deg)translate(9rem)rotate(-150deg); }
-        .a180_r9 { transform: rotate(180deg)translate(9rem)rotate(-180deg); }
-        .a210_r9 { transform: rotate(210deg)translate(9rem)rotate(-210deg); }
-        .a240_r9 { transform: rotate(240deg)translate(9rem)rotate(-240deg); }
-        .a270_r9 { transform: rotate(270deg)translate(9rem)rotate(-270deg); }
-        .a300_r9 { transform: rotate(300deg)translate(9rem)rotate(-300deg); }
-        .a330_r9 { transform: rotate(330deg)translate(9rem)rotate(-330deg); }
-    </style>
+	<link rel="stylesheet" href="css/auspice.css">
+	<script src="js/scc.js"></script>
+	<script src="js/main.js"></script>
+	
+    <script type="text/javascript">
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+   		});
+    </script>
 </head>
-
 <body>
-<h1>择吉</h1>
-<div class="situation">
-    <ul class="ul_circle" id="branch12">支
-        <li class="a0_r9">酉</li>
-        <li class="a30_r9">戌</li>
-        <li class="a60_r9">亥</li>
-        <li class="a90_r9">子</li>
-        <li class="a120_r9">丑</li>
-        <li class="a150_r9">寅</li>
-        <li class="a180_r9">卯</li>
-        <li class="a210_r9">辰</li>
-        <li class="a240_r9">巳</li>
-        <li class="a270_r9">午</li>
-        <li class="a300_r9">未</li>
-        <li class="a330_r9">申</li>
-    </ul>
-</div>
-
-
+	<div id="d_top">
+		<p id="p_copyright">（C）镜言星门体系</p>
+		<h2>择吉</h2>
+	</div>
+	<div id="d_input">
+		<input id="ipt_time" type="datetime-local" step="1" />
+		<button id="btn_start" onclick="fn_start()">用时</button>
+	</div>
+	<p id="p_scc">辛亥年 乙酉月 壬寅日 丙午时</p>
+	<div class="situation">
+		<ul class="ul_circle" id="action">建</ul>
+		<ul class="ul_circle" id="lead">将</ul>
+	    <ul class="ul_circle" id="branch12">
+	        <li class="a0_r">酉</li>
+	        <li class="a30_r">戌</li>
+	        <li class="a60_r">亥</li>
+	        <li class="a90_r">子</li>
+	        <li class="a120_r">丑</li>
+	        <li class="a150_r">寅</li>
+	        <li class="a180_r">卯</li>
+	        <li class="a210_r">辰</li>
+	        <li class="a240_r">巳</li>
+	        <li class="a270_r">午</li>
+	        <li class="a300_r">未</li>
+	        <li class="a330_r">申</li>
+	    </ul>
+	</div>
+	<p>
+		三门四户合一处，可为取用
+		<br>天三门： 太冲、小吉、从魁
+		<br>地四户： 除、危、定、开
+	</p>
 </body>
 
+<script type="text/javascript">
+	// 数组Array 对 列表ul 赋值
+	let fn_ul_add = (id_ul, arr) => {
+		let list_ul = document.getElementById(id_ul);
+		list_ul.innerHTML = '';	// 清空 ul 中的 li
+		arr.forEach(function(item){
+			let list_item = document.createElement("li");   // 创建新列表项
+			list_item.textContent = item;   // 设置列表项的文本内容
+			list_ul.appendChild(list_item); // 将列表项添加到列表中
+		});
+	};
+	// 列表元素li 环绕布局
+	let fn_circle = (id_ul, radius_vw) => {
+		let ul = document.querySelector("#" + id_ul);
+		let arr_li = ul.querySelectorAll('li');
+		let n = arr_li.length;
+		let i = 0;
+		arr_li.forEach(function(li){
+			let r = (360 / n) * i + 90;
+			let radius = radius_vw;
+			if (radius_vw > 35) {
+				// 半径大于指定值，则缩减左右半径
+				radius = [2, 3, 4, 8, 9, 10].includes(i) ? radius - 2 : radius;
+			}
+			li.style.transform = `rotate(${r}deg)translate(${radius}vw)rotate(-${r}deg)`;
+			i = i + 1;
+		});
+	};
+	//
+	let fn_mark_css = (id_ul, arr_i) => {
+		let ul = document.querySelector("#" + id_ul);
+		let arr_li = ul.querySelectorAll('li');
+		arr_li.forEach(function(li){
+			if (arr_i.includes(li.textContent)){
+				li.classList.add('stem3');
+			}
+		});
+	}
+	// 获取当前时间戳
+	let fn_now = () => {
+		// 获取当前时间
+		let str_now = new Date().toLocaleString();
+		// 字符串中存在2个 / ，但 replace() 仅能替换1次
+		str_now = str_now.replace("/", "-");	// 替换第1个'/'
+		str_now = str_now.replace("/", "-");	// 替换第2个'/'
+		str_now = str_now.replace(" ", "T");
+		// 赋予输入框默认值
+		document.getElementById("ipt_time").value = str_now;
+		console.log("文件：index.html\n时间输入框 默认值:", str_now);
+	}
+	// 用时 button
+	function fn_start() {
+		console.log("\n▶️ 启动");
+		let str_ce = document.getElementById("ipt_time").value;
+		if (str_ce === "") {
+			fn_now();
+			str_ce = document.getElementById("ipt_time").value;
+		}
+		str_ce = str_ce.replace("T", " ");
+		console.log("输入（西历）时间:", str_ce);
+		let obj_scc = new c_scc(str_ce);
+		document.getElementById("p_scc").textContent = (new c_html_scc(
+			obj_scc.scc_y.id_stem,
+			obj_scc.scc_y.id_branch,
+			obj_scc.scc_m.id_stem,
+			obj_scc.scc_m.id_branch,
+			obj_scc.scc_d.id_stem,
+			obj_scc.scc_d.id_branch,
+			obj_scc.scc_h.id_stem,
+			obj_scc.scc_h.id_branch
+		)).fn_html();
+		let infer_cn = new c_infer(obj_scc.scc_m.id_branch, obj_scc.scc_h.id_branch);
+		// 十二建除
+		fn_ul_add('action', infer_cn.a_action);
+		fn_circle('action', 29);
+		fn_mark_css('action', ['除', '危', '定', '开']);
+		// 十二月将
+		fn_ul_add('lead', infer_cn.a_lead);
+		fn_circle('lead', 41);
+		fn_mark_css('lead', ['太冲', '小吉', '从魁']);
+	}
+	// 页面载入时运行
+	window.onload = () => {
+		fn_now();
+		fn_start();
+	};
+</script>
 </html>
