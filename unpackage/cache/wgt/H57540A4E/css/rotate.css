@@ -1,0 +1,16 @@
+
+/* 角度 angle 半径 radius */
+
+/* rotate(30deg) 旋转 translate(14vw) 平移 rotate(-30deg) 校正内容方向 */
+.a0_r { transform: rotate(0deg)translate(18vw)rotate(-0deg); }
+.a30_r { transform: rotate(30deg)translate(18vw)rotate(-30deg); }
+.a60_r { transform: rotate(60deg)translate(18vw)rotate(-60deg); }
+.a90_r { transform: rotate(90deg)translate(18vw)rotate(-90deg); }
+.a120_r { transform: rotate(120deg)translate(18vw)rotate(-120deg); }
+.a150_r { transform: rotate(150deg)translate(18vw)rotate(-150deg); }
+.a180_r { transform: rotate(180deg)translate(18vw)rotate(-180deg); }
+.a210_r { transform: rotate(210deg)translate(18vw)rotate(-210deg); }
+.a240_r { transform: rotate(240deg)translate(18vw)rotate(-240deg); }
+.a270_r { transform: rotate(270deg)translate(18vw)rotate(-270deg); }
+.a300_r { transform: rotate(300deg)translate(18vw)rotate(-300deg); }
+.a330_r { transform: rotate(330deg)translate(18vw)rotate(-330deg); }

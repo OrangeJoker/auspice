@@ -1,0 +1,15 @@
+
+/* 天干十色 */
+.stem1 { color: #315341; }  /* 甲（苍绿#223e36 提亮） */
+.stem2 { color: #057748; }  /* 乙 松花绿 */
+.stem3 { color: #c3272b; }  /* 丙 赤 */
+.stem4 { color: #ff3300; }  /* 丁 炎 */
+.stem5 { color: #a78e44; }  /* 戊 乌金 */
+.stem6 { color: #622a1d; }  /* 己 玄 */
+.stem7 { color: #758a99; }  /* 庚 墨灰 */
+.stem8 { color: #91828f; }  /* 辛 迷楼灰 */
+.stem9 { color: #2E59A7; }  /* 壬 群青 */
+.stem10 { color: #3b2e7e; }  /* 癸 藏蓝 */
+
+.stem4_shadow { font-size: x-large ; text-shadow: 0 0 1px #ff3300; }
+.stem5_shadow { font-size: x-large ; text-shadow: 0 0 1px #a78e44; }

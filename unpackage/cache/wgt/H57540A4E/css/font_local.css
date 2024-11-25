@@ -1,0 +1,12 @@
+
+/* 本地字体 */
+@font-face {
+    /* 朱雀仿宋 */
+    font-family: 'zhuque_fangsong';
+    src: url("font/ZhuqueFangsong-Regular.ttf");
+}
+@font-face {
+    /* 阿里普惠黑体 */
+    font-family: 'ali_puhui';
+    src: url("font/AlibabaPuHuiTi-3-55-Regular.otf");
+}

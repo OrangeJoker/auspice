@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>择吉</title>
-	<link rel="stylesheet" href="css/auspice.css">
-	<script src="js/scc.js"></script>
-	<script src="js/main.js"></script>
-	
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/color_cn.css">
+    <link rel="stylesheet" href="./css/font_local.css">
+    <link rel="stylesheet" href="./css/rotate.css">
+    <script type="text/javascript" src="./js/time_scc.js"></script>
+    <script type="text/javascript" src="./js/cn_term.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
     <script type="text/javascript">
    		document.addEventListener('plusready', function(){
    			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
@@ -17,17 +20,17 @@
 <body>
 	<div id="d_top">
 		<p id="p_copyright">（C）镜言星门体系</p>
-		<h2>择吉</h2>
+		<h2 id="topic">择吉</h2>
 	</div>
 	<div id="d_input">
 		<input id="ipt_time" type="datetime-local" step="1" />
-		<button id="btn_start" onclick="fn_start()">用时</button>
+		<button id="btn_start" onclick="fn_btn_start()">用时</button>
 	</div>
 	<p id="p_scc">辛亥年 乙酉月 壬寅日 丙午时</p>
 	<div class="situation">
 		<ul class="ul_circle" id="action">建</ul>
-		<ul class="ul_circle" id="lead">将</ul>
-	    <ul class="ul_circle" id="branch12">
+		<ul class="ul_circle" id="lord">将</ul>
+	    <ul class="ul_circle" id="eb12">
 	        <li class="a0_r">酉</li>
 	        <li class="a30_r">戌</li>
 	        <li class="a60_r">亥</li>
@@ -42,23 +45,27 @@
 	        <li class="a330_r">申</li>
 	    </ul>
 	</div>
-	<p>三门四户合一处，可为 用
+	<p>三门四户合一处 为用
 		<br>天三门： 太冲、小吉、从魁
 		<br>地四户： 除、危、定、开
 	</p>
 </body>
 
 <script type="text/javascript">
+
 	// 数组Array 对 列表ul 赋值
-	let fn_ul_add = (id_ul, arr) => {
+	let fn_ul_add = (id_ul, a_str) => {
+		// 删除空值
+		let a_html = a_str.filter((element) => element !== undefined);
 		let list_ul = document.getElementById(id_ul);
 		list_ul.innerHTML = '';	// 清空 ul 中的 li
-		arr.forEach(function(item){
+		a_html.forEach(function(item){
 			let list_item = document.createElement("li");   // 创建新列表项
 			list_item.textContent = item;   // 设置列表项的文本内容
 			list_ul.appendChild(list_item); // 将列表项添加到列表中
 		});
 	}
+
 	// 列表元素li 环绕布局
 	let fn_circle = (id_ul, radius_vw) => {
 		let ul = document.querySelector("#" + id_ul);
@@ -71,23 +78,27 @@
 			if (radius_vw > 35) {
 				// 半径大于指定值，则缩减左右半径
 				radius = [2, 3, 4, 8, 9, 10].includes(i) ? radius - 2 : radius;
+				// 进一步 缩减两端半径
+				radius = [3, 9].includes(i) ? radius - 1 : radius;
 			}
 			li.style.transform = `rotate(${r}deg)translate(${radius}vw)rotate(-${r}deg)`;
 			i = i + 1;
 		});
 	}
+
 	// 标记关键信息
 	let fn_mark_css = (id_ul, arr_i) => {
 		let ul = document.querySelector("#" + id_ul);
 		let arr_li = ul.querySelectorAll('li');
 		arr_li.forEach(function(li){
 			if (arr_i.includes(li.textContent)){
-				li.classList.add('stem3');
+				li.classList.add('stem3', 'stem4_shadow');
 			}
 		});
 	}
+
 	// 获取当前时间戳
-	let fn_now = () => {
+	let fn_now = (id_element) => {
 		// 获取当前时间
 		let str_now = new Date().toLocaleString();
 		// 字符串中存在2个 / ，但 replace() 仅能替换1次
@@ -95,44 +106,52 @@
 		str_now = str_now.replace("/", "-");	// 替换第2个'/'
 		str_now = str_now.replace(" ", "T");
 		// 赋予输入框默认值
-		document.getElementById("ipt_time").value = str_now;
+		document.getElementById(id_element).value = str_now;
 		console.log("文件：index.html\n时间输入框 默认值:", str_now);
 	}
+
+	// main 主函数
+    let fn_main = (str_time) => {
+		let obj_scc = new c_scc(str_time);
+        console.log(obj_scc);
+		document.getElementById("p_scc").textContent = fn_html_scc(
+				obj_scc.scc_y.id_hs10, obj_scc.scc_y.id_eb12,
+				obj_scc.scc_m.id_hs10, obj_scc.scc_m.id_eb12,
+				obj_scc.scc_d.id_hs10, obj_scc.scc_d.id_eb12,
+				obj_scc.scc_h.id_hs10, obj_scc.scc_h.id_eb12
+		);
+		let obj_infer = new c_infer(obj_scc.scc_m.id_eb12, obj_scc.scc_h.id_eb12);
+		let a_html_action = fn_cn_arr(obj_infer.a_action, '建除');
+		let a_html_lord = fn_cn_arr(obj_infer.a_lord, '月将');
+		console.log(obj_infer.a_action,a_html_action);
+		// 十二建除
+		fn_ul_add('action', a_html_action);
+		fn_circle('action', 30);
+		fn_mark_css('action', ['除', '危', '定', '开']);
+		// 十二月将
+		fn_ul_add('lord', a_html_lord);
+		fn_circle('lord', 44);
+		fn_mark_css('lord', ['太冲', '小吉', '从魁']);
+    }
+</script>
+
+<script type="text/javascript">
 	// 用时 button
-	function fn_start() {
+	function fn_btn_start() {
 		console.log("\n▶️ 启动");
 		let str_ce = document.getElementById("ipt_time").value;
 		if (str_ce === "") {
-			fn_now();
+			fn_now("ipt_time");
 			str_ce = document.getElementById("ipt_time").value;
 		}
 		str_ce = str_ce.replace("T", " ");
 		console.log("输入（西历）时间:", str_ce);
-		let obj_scc = new c_scc(str_ce);
-		document.getElementById("p_scc").textContent = (new c_html_scc(
-			obj_scc.scc_y.id_stem,
-			obj_scc.scc_y.id_branch,
-			obj_scc.scc_m.id_stem,
-			obj_scc.scc_m.id_branch,
-			obj_scc.scc_d.id_stem,
-			obj_scc.scc_d.id_branch,
-			obj_scc.scc_h.id_stem,
-			obj_scc.scc_h.id_branch
-		)).fn_html();
-		let infer_cn = new c_infer(obj_scc.scc_m.id_branch, obj_scc.scc_h.id_branch);
-		// 十二建除
-		fn_ul_add('action', infer_cn.a_action);
-		fn_circle('action', 29);
-		fn_mark_css('action', ['除', '危', '定', '开']);
-		// 十二月将
-		fn_ul_add('lead', infer_cn.a_lead);
-		fn_circle('lead', 41);
-		fn_mark_css('lead', ['太冲', '小吉', '从魁']);
+		fn_main(str_ce);
 	}
-	// 页面载入时运行
+
 	window.onload = () => {
-		fn_now();
-		fn_start();
-	};
+		fn_btn_start();
+	}
 </script>
+
 </html>

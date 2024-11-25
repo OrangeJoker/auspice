@@ -1,0 +1,117 @@
+
+body {
+    padding: 0 6vw 6vw 6vw;
+    background: #fefcf0;  /* 象牙白 #fffbf0 微调 */
+    /* 文字 */
+    font-family: 'zhuque_fangsong', serif;
+    font-size: max(2vw, 1.4rem);
+    color: #161823;     /* 漆黑 */
+}
+
+p {
+	font-family: 'zhuque_fangsong', serif;
+	font-size: 1.2rem;
+    line-height: 1.8rem;
+}
+
+/* 时间输入框 */
+input[type="datetime-local"] {
+    font-family: 'ali_puhui', serif;
+    font-size: 1rem;
+    width: 13rem;
+    height: 2.0rem;
+    padding: 0 2vw 0 2vw;
+    background: rgb(255, 255, 255, 0.4);   /* 透明度 40% */
+    border: #161823 1px solid;
+    border-radius: 0.4rem;
+}
+
+/* 顶部 */
+#topic {
+    margin-top: 1.4rem;
+}
+
+#d_top {
+    height: 3rem;
+    border-bottom: rgb(0, 0, 0, 0.2) 1px solid;
+    margin-bottom: 1.4rem;
+}
+
+/* 版权 */
+#p_copyright {
+    float: right;
+    font-size: max(1.4vw, 1rem);
+    padding-top: 0.1rem;
+}
+
+/* 输入区域 */
+#d_input {
+    font-family: 'ali_puhui', serif;
+    font-size: max(1.2vw, 1rem);
+    justify-content: center;
+    margin-bottom: 1.4rem;
+}
+
+/* 启动按钮 */
+#btn_start {
+    font-family: 'ali_puhui', serif;
+    font-size: 1rem;
+    width: 4rem;
+    height: 2.1rem;
+    background: rgb(255, 255, 255, 0.4);   /* 透明度 40% */
+    border: #161823 1px solid;
+    border-radius: 0.4rem;
+    float: right;
+}
+
+/* 环形布局 */
+.situation {
+    margin: auto;
+    padding: 12vw 0 14vw 0;
+    width: 84vw;
+    height: 90vw;
+    border-radius: 2%;
+    /* 内部元素布局 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ul_circle {
+    padding: 0;
+    list-style: none;
+    position: absolute;
+    /* 文字居中 */
+    display: grid;
+    place-items: center;
+    width: 22vw;
+    height: 22vw;
+    border-radius: 50%;
+    border: #758a99 1px solid;
+    background: #fefcf0;  /* 象牙白 #fffbf0 微调 */
+}
+
+.ul_circle li {
+    /* 文本居中 */
+    display: grid;
+    place-items: center;
+    /* 旋转相关属性 */
+    position: absolute;
+    transform-origin: center;
+}
+
+#eb12 li {
+    color: #758a99;
+    /* 文本居中 */
+    display: grid;
+    place-items: center;
+}
+
+/* 月将 li 标签 */
+#lord li {
+    width: 10vw;
+    height: 20vw;
+    letter-spacing: 0.2rem; /* 字间距 */
+    /* 文本竖排 */
+    writing-mode: vertical-lr;
+}
